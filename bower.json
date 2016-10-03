@@ -1,0 +1,22 @@
+{
+  "name": "localweather",
+  "description": "A local weather application built using JavaScript and Nodejs",
+  "main": "index.js",
+  "authors": [
+    "Ugo Harry"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/UgoHarry/localWeather",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "query": "^0.0.2",
+    "bootstrap": "^3.3.7",
+    "bootstrap-toggle": "^2.2.2"
+  }
+}
