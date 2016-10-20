@@ -48,6 +48,13 @@ gulp.task ('styles', function() {
 });
 
 
+//wiredep
+gulp.task('bower', function() {
+  gulp.src('index.html')
+  .pipe(wiredep())
+  .pipe(gulp.dest('dist'));
+});
+
 
 
 
