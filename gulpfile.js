@@ -2,16 +2,17 @@ var gulp = require ('gulp');
 var gulpLoadPlugins = require ('gulp-load-plugins');
 var browserSync = require ('browser-sync');
 var wiredep = require ('wiredep').stream;
-var uglify = require ('gulp-uglify');
+var runSequence = require ('run-sequence');
+var del = require ('del');
 
 var $ = gulpLoadPlugins();
 
 
 //////////////PATHS/////////////
-var jsFiles = 'js/*.js';
+var jsFiles = 'app/js/*.js';
 var jsDest = 'dist/scripts';
-var cssFiles = 'styles/css/*.css';
-var scssFiles = 'styles/scss/*.scss';
+var cssFiles = 'app/styles/css/*.css';
+var scssFiles = 'app/styles/scss/*.scss';
 var cssDest = 'dist/styles';
 
 //////////////TASKS/////////////
@@ -32,7 +33,7 @@ gulp.task('sass', function() {
   return gulp.src(scssFiles)
   .pipe($.plumber())
   .pipe($.sass().on('error', $.sass.logError))
-  .pipe(gulp.dest('styles/css'));
+  .pipe(gulp.dest('app/styles/css'));
 });
 
 //join, minify and rename css files, then place in the 'dist' directory
@@ -50,16 +51,33 @@ gulp.task ('styles', function() {
 
 //wiredep
 gulp.task('bower', function() {
-  gulp.src('index.html')
+  gulp.src('app/index.html')
   .pipe(wiredep())
   .pipe(gulp.dest('dist'));
 });
 
+//clean out redundant file and directories
+gulp.task('clean', del.bind(null, ['dist/scripts/*.js', 'dist/styles/*.css']));
 
 
+//serve task
+gulp.task('serve', function (){
+  runSequence('clean', 'bower', 'sass', 'scripts', 'styles', 'bower',function(){
+    browserSync({
+      port: 3005,
+      server: {
+        baseDir: 'dist',
+        routes: {
+          '/bower_components': 'bower_components'
+        }
+      }
+    });
+  });
+})
 
 
+//default gulp task
 gulp.task('default', function(){
-  gulp.src('js/*.js').
+  gulp.src('app/js/*.js').
   pipe(uglify());
 });
