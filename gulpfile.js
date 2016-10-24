@@ -8,14 +8,17 @@ var del = require ('del');
 var $ = gulpLoadPlugins();
 
 
-//////////////PATHS/////////////
+/*************PATHS***************/
+
 var jsFiles = 'app/js/*.js';
 var jsDest = 'dist/scripts';
 var cssFiles = 'app/styles/css/*.css';
 var scssFiles = 'app/styles/scss/*.scss';
 var cssDest = 'dist/styles';
 
-//////////////TASKS/////////////
+
+
+/*************TASKS***************/
 
 //concatenate and minify the scripts
 gulp.task('scripts', function(){
@@ -26,7 +29,6 @@ gulp.task('scripts', function(){
   .pipe($.uglify())
   .pipe(gulp.dest(jsDest));
 });
-
 
 //convert scss to css ad places them in the (source) css directory
 gulp.task('sass', function() {
@@ -47,7 +49,6 @@ gulp.task ('styles', function() {
   .pipe($.rename('mainStyle.min.css'))
   .pipe(gulp.dest(cssDest));
 });
-
 
 //wiredep
 gulp.task('bower', function() {
@@ -73,7 +74,7 @@ gulp.task('serve', function (){
       }
     });
   });
-})
+});
 
 
 //default gulp task
