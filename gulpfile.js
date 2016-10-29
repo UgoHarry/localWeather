@@ -62,7 +62,7 @@ gulp.task('inject', function() {
   var target = gulp.src('app/index.html');
   var source = gulp.src(['app/js/*.js', 'app/styles/*.css']);
   target.pipe($.inject(source))
-  .pipe(gulp.dest('inject'));
+  .pipe(gulp.dest('app'));
 });
 
 //clean out redundant file and directories
