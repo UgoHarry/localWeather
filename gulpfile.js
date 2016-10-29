@@ -27,7 +27,7 @@ gulp.task('scripts', function(){
   .pipe($.concat('scripts.js'))
   .pipe($.rename('scripts.min.js'))
   .pipe($.uglify())
-  .pipe(gulp.dest(jsDest));
+  .pipe(gulp.dest('app'));
 });
 
 //convert scss to css ad places them in the (source) css directory
@@ -54,23 +54,23 @@ gulp.task ('styles', function() {
 gulp.task('bower', function() {
   gulp.src('app/index.html')
   .pipe(wiredep())
-  .pipe(gulp.dest('dist'));
+  .pipe(gulp.dest('app'));
 });
 
 //inject styles and scripts
 gulp.task('inject', function() {
-  var target = gulp.src('dist/index.html');
-  var source = gulp.src(['dist/scripts/*.js', 'dist/styles/*.css']);
+  var target = gulp.src('app/index.html');
+  var source = gulp.src(['app/js/*.js', 'app/styles/*.css']);
   target.pipe($.inject(source))
-  .pipe(gulp.dest('dist'));
+  .pipe(gulp.dest('inject'));
 });
 
 //clean out redundant file and directories
 gulp.task('clean', del.bind(null, ['dist/scripts/*.js', 'dist/styles/*.css']));
 
 
-//serve task
-gulp.task('serve', function (){
+//serve files prepared for production
+gulp.task('serve:dist', function (){
   runSequence('clean', 'bower', 'sass', 'scripts', 'styles', 'bower',function(){
     browserSync({
       port: 3005,
@@ -85,8 +85,26 @@ gulp.task('serve', function (){
 });
 
 
+//serve dev files
+gulp.task('serve', function() {
+    runSequence('bower', 'sass', 'scripts' , 'inject', function() {
+        browserSync ({
+            port: 3000,
+            server: {
+                baseDir: 'app',
+                routes: {
+                    '/bower_components': 'bower_components'
+                }
+            }
+        });
+    });
+});
+
+
 //default gulp task
 gulp.task('default', function(){
   gulp.src('app/js/*.js').
   pipe(uglify());
 });
+
+gulp.task('transfer')
