@@ -27,7 +27,7 @@ gulp.task('scripts', function(){
   .pipe($.concat('scripts.js'))
   .pipe($.rename('scripts.min.js'))
   .pipe($.uglify())
-  .pipe(gulp.dest('app'));
+  .pipe(gulp.dest('app/js'));
 });
 
 //convert scss to css ad places them in the (source) css directory
@@ -106,5 +106,3 @@ gulp.task('default', function(){
   gulp.src('app/js/*.js').
   pipe(uglify());
 });
-
-gulp.task('transfer')
