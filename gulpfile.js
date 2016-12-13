@@ -2,6 +2,8 @@ var gulp = require ('gulp');
 var gulpLoadPlugins = require('gulp-load-plugins');
 var browserSync = require('browser-sync').create();
 var runSequence = require('run-sequence');
+var wiredep = require('wiredep').stream;
+var del = require('del');
 
 var $ = gulpLoadPlugins();
 
@@ -53,4 +55,23 @@ gulp.task('useref', function() {
 });
 
 
-//
+//LOAD BOWER FILES INTO DIST FILES
+gulp.task('bower', function () {
+    gulp.src ('dist/index.html')
+    .pipe(wiredep({
+        ignorePath: /^(\.\.\/)+/
+    }))
+    .pipe(gulp.dest('dist')); //TODO: Where do I add this
+});
+
+//CLEANING THE DIST FOLDER
+gulp.task('clean:dist', function() {
+    del.sync('dist');
+});
+
+//BUILD OPTIMISED FILES
+gulp.task ('build', function() {
+    runSequence('clean:dist', ['sass', 'useref'], 'bower', function() {
+        console.log('Building files...');
+    });
+});
