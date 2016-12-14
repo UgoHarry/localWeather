@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- bower:css -->
     <!-- endbower -->
+
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bitter|Cinzel|Dancing+Script|Hind+Guntur|Josefin+Sans|Montez|Open+Sans|Slabo+27px|Vesper+Libre">
+
 
     <!--build:css styles/mainStyle.min.css -->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -10,15 +15,49 @@
     <!--endbuild-->
     <title>Hello World</title>
 </head>
+
 <body>
-    <h1>Testing</h1>
+
+    <div class="container">
+        <div class="banner">
+            <h2>Your local weather</h2>
+        </div>
+        <div class="display">
+            <h3 id="locCity"><i class="fa fa-spinner fa-pulse fa-fw"></i></h3>
+            <div class="locTemp">
+                <div class="locTemp-details">
+                    <h2 id="locTemp-number">NA</h2><span>o</span>
+                    <input id="unitToggle" data-toggle="toggle" data-height="70" data-on="F" data-off="C" data-offstyle="default" data-onstyle="default" data-class="yoyo" type="checkbox">
+                </div>
+                <h3 id="locTemp-desc">Cloudy</h3>
+                <canvas id="locTemp-icon" width="50" height="50"></canvas>
+                <h3 class="forecastTitle">5 day forecast</h3>
+                <ul class="forecastDays">
+                    <li id="day0"></li>
+                    <li id="day1"></li>
+                    <li id="day2"></li>
+                    <li id="day3"></li>
+                    <li id="day4"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!-- bower:js -->
     <!-- endbower -->
 
     <!-- build:js scripts/mainScript.min.js-->
-    <script src="js/main2.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/test1.js"></script>
     <script src="js/test2.js"></script>
     <!-- endbuild -->
+
+    <script src="https://use.fontawesome.com/e4c49c8573.js"></script>
+    <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
+
 </body>
+
 </html>

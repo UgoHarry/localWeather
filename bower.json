@@ -18,5 +18,10 @@
     "query": "^0.0.2",
     "bootstrap": "^3.3.7",
     "bootstrap-toggle": "^2.2.2"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": ["dist/js/bootstrap.js", "dist/css/bootstrap.css"]
+    }
   }
 }
