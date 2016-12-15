@@ -2,6 +2,7 @@ Your Local Weather App
 ------------------
 
 Hey! Welcome and thank you for having a look at Your Local Weather app, a simple web application that provides current and forecasted weather for your location. The application is built on **Nodejs** and **Express js** web framework, using a number of tools and libraries detailed in the following section.
+This application can also be previewed at this [Codepen](https://codepen.io/UgoHarry/full/rLRXKW).
 
 ----------
 
