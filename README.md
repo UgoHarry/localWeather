@@ -16,7 +16,7 @@ A number of tools were adopted in setting up/building the project are mainly:
  - **NPM** and **Bower**, the package managers used in managing the libraries and Nodejs packages/frameworks.
  - Front-end **libraries** relevant to the project
 
-#### Set up
+### Set up
 
  - Ensure git is installed and initiated in your project. Before cloning the repository. To clone the repository, run following command:
  `git clone >>URL<<`
